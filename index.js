@@ -32,9 +32,80 @@ const promptManager = () => {
                     return false;
                 }
             }
+        },
+        {
+            type: 'input',
+            name: 'employeeId',
+            message: 'Enter an employee ID:',
+            validate: employeeIdInput => {
+                if (employeeIdInput) {
+                    return true;
+                } else {
+                    console.log('You need to enter an employee ID!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Enter an email address:',
+            validate: emailInput => {
+                if (emailInput) {
+                    return true;
+                } else {
+                    console.log('You need to enter an email address!');
+                    return false;
+                }
+            }   
+        },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: 'Enter an office number',
+            validate: officeNumberInput => {
+                if (officeNumberInput) {
+                    return true;
+                } else {
+                    console.log('You need to enter an office number!');
+                    return false;
+                }
+            }  
         }
-    ]) 
+    ]).then(answers => {
+        console.log(answers);
+        const manager = new Manager(answers.name, answers.employeeId, answers.email, answers.officeNumber);
+        teamMembers.push(manager);
+        promptMenu()
+        
+    }) 
+}
 
+const promptMenu = () => {
+    return inquirer.prompt([
+        {
+            type: 'list',
+            name: 'menu',
+            message: 'Please select an option to continue building your team:',
+            choices: [
+            'Add an engineer', 
+            'Add an intern',
+            'Finish building my team']
+        }
+
+    ]).then(userChoice => {
+        switch (userChoice.menu) {
+            case 'Add an engineer':
+                promptEngineer();
+                break;
+            case 'Add an intern':
+                promptIntern();
+                break;
+            default:
+                buildTeam();
+        }
+    })
+}
 
 
 promptManager();
