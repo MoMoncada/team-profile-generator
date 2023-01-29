@@ -19,7 +19,6 @@ const Intern = require('./lib/Intern');
 const teamMembers = [];
 
 
-
 //---- function to start building the team with the team Manager ----//
 const promptManager = () => {
     return inquirer.prompt([
@@ -265,7 +264,9 @@ const buildTeam = () => {
     ===============
     You have finished building your team!
     ===============
+    
     `);
+    console.log(teamMembers);
 }
 
 
