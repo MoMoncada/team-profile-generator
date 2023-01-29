@@ -1,11 +1,11 @@
-//--- importing Employee class ---//
+//--- importing Employee class from lib---//
 const Employee = require('../lib/Employee');
 
 //--- passing specific parameters for testing ---//
 const employee = new Employee('Mauxi', '62442', 'mauxi.moncada10@gmail.com');
 
 //--- first test verifies the values passed to the object constructor and are assigned to the right properties ---//
-test('test if the values passed to the employe object constructor are being correctly assign to the properties', () => {
+test('test if the values passed to the employee object constructor are being correctly assign to the properties', () => {
     expect(employee.name).toBe('Mauxi');
     expect(employee.id).toBe('62442');
     expect(employee.email).toBe('mauxi.moncada10@gmail.com');
