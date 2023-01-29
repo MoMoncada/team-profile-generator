@@ -4,7 +4,7 @@ const fs = require('fs'); // imports the 'fs' library, allows interacting with t
 const path = require('path'); // provides utilities for working with file and directory paths
 
 
-//-- classes --//
+//-- Imported classes --//
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -116,7 +116,7 @@ const promptMenu = () => {
     });
 };
 
-
+//-- simple message for the user --//
 const promptEngineer = () => {
     console.log(`
     ===============
@@ -126,7 +126,7 @@ const promptEngineer = () => {
 
     return inquirer.prompt([
 
-     //--- questions for Engineers information ---//
+     //--- questions for Engineers' information ---//
        {
         type: 'input',
         name: 'name',
@@ -167,14 +167,14 @@ const promptEngineer = () => {
        },
        {
         type: 'input',
-            name: 'githubUsername',
-            message: 'Enter your Github username:',
-            validate: githubUserName => {
-                if (githubUserName) {
-                    return true;
-                } else {
-                    console.log('Please enter your Github username!');
-                    return false;
+        name: 'githubUsername',
+        message: 'Enter your Github username:',
+        validate: githubUserName => {
+            if (githubUserName) {
+                return true;
+            } else {
+                console.log('Please enter your Github username!');
+                return false;
                 }
             }
        }
@@ -185,6 +185,79 @@ const promptEngineer = () => {
         promptMenu();
     })
 };
+
+//-- simple message for the user --//
+const promptIntern = () => {
+    console.log(`
+    ===============
+    Add a New Intern
+    ===============
+    `);
+
+
+    return inquirer.prompt([
+
+        //--- questions for the Interns' information ---//
+        {
+        type: 'input',
+        name: 'name',
+        message: 'What is the name of the Intern?',
+        validate: internName => {
+            if (internName) {
+                return true;
+            } else {
+                console.log('Please enter the name of the intern!');
+                return false;
+                }
+            } 
+        },
+        {
+        type: 'input',
+        name: 'employeeId',
+        message: 'Enter an ID for the Intern:',
+        validate: employeeIdInput => {
+            if (employeeIdInput) {
+                return true;
+            } else {
+                console.log('Please enter an employee ID!');
+                return false;
+                }
+            } 
+        },
+        {
+        type: 'input',
+        name: 'email',
+        message: 'Enter an email address for the Intern:',
+        validate: emailInput => {
+            if (emailInput) {
+                return true;
+            } else {
+                console.log('Please enter an email address!');
+                return false;
+                }
+            }     
+        },
+        {
+        type: 'input',
+        name: 'school',
+        message: 'Enter your school name:',
+        validate: schoolInput => {
+            if (schoolInput) {
+                return true;
+            } else {
+                console.log('Please enter your school name!');
+                return false;
+                }
+            }
+        }
+    ]).then(answers => {
+        console.log(answers);
+        const intern = new Intern(answers.name, answers.employeeId, answers.email, answers.school);
+        teamMembers.push(intern);
+        promptMenu();
+    });
+};
+
 
 
 promptManager();
