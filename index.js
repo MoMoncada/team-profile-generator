@@ -259,5 +259,18 @@ const promptIntern = () => {
 };
 
 
+//-- simple message for the user --//
+const buildTeam = () => {
+    console.log(`
+    ===============
+    You have finished building your team!
+    ===============
+    `);
+}
+
+
+// TODO: add function to output information to a html file
+
+
 
 promptManager();
