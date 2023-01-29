@@ -4,7 +4,7 @@ const fs = require('fs'); // imports the 'fs' library, allows interacting with t
 const path = require('path'); // provides utilities for working with file and directory paths
 
 
-// classes
+//-- classes --//
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -15,11 +15,16 @@ const Intern = require('./lib/Intern');
 // const outputPath = path.join(OUTPUT_DIR, "template.html"); //joins the 'OUTPUT_DIR' and 'template.html' using the 'path.join' method
 
 
-//array to store team members
+//-- array to store team members --//
 const teamMembers = [];
 
+
+
+//---- function to start building the team with the team Manager ----//
 const promptManager = () => {
     return inquirer.prompt([
+
+        //-- Manager information questions --//
         {
             type: 'input',
             name: 'name',
@@ -81,6 +86,10 @@ const promptManager = () => {
     }) 
 }
 
+
+
+
+//---- function to present user with options to build a list of team members ----//
 const promptMenu = () => {
     return inquirer.prompt([
         {
@@ -104,8 +113,78 @@ const promptMenu = () => {
             default:
                 buildTeam();
         }
+    });
+};
+
+
+const promptEngineer = () => {
+    console.log(`
+    ===============
+    Add a New Engineer
+    ===============
+    `);
+
+    return inquirer.prompt([
+
+     //--- questions for Engineers information ---//
+       {
+        type: 'input',
+        name: 'name',
+        message: 'What is the name of the Engineer?',
+        validate: engineerName => {
+            if (engineerName){
+                return true;
+            } else {
+                console.log('Please enter a name for the Engineer!');
+            }
+        }
+       },
+       {
+        type: 'input',
+        name: 'employeeId',
+        message: 'Enter the Engineer employee ID:',
+        validate:  employeeIdInput => {
+            if ( employeeIdInput) {
+                return true;
+            } else {
+                console.log('Please enter an employee ID!');
+                return false;
+            }
+        }
+       },
+       {
+        type: 'input',
+        name: 'email',
+        message: 'Enter an email address:',
+        validate: emailInput => {
+            if (emailInput) {
+                return true;
+            } else {
+                console.log('Please enter your email address!');
+                return false;
+            }
+        }
+       },
+       {
+        type: 'input',
+            name: 'githubUsername',
+            message: 'Enter your Github username:',
+            validate: githubUserName => {
+                if (githubUserName) {
+                    return true;
+                } else {
+                    console.log('Please enter your Github username!');
+                    return false;
+                }
+            }
+       }
+    ]).then(answers => {
+        console.log(answers);
+        const engineer = new Engineer(answers.name, answers.employeeId, answers.email, answers.githubUsername);
+        teamMembers.push(engineer);
+        promptMenu();
     })
-}
+};
 
 
 promptManager();
