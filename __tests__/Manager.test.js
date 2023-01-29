@@ -2,11 +2,11 @@
 const Manager = require('../lib/Manager');
 
 //--- passing specific parameters for testing ---//
-const manager = new Manager('Daenerys', '333','info@motherofdragons.com','777');
+const manager = new Manager('Daenerys Targaryen', '333','info@motherofdragons.com','777');
 
 //--- first test verifies the values passed to the object constructor and are assigned to the right properties ---//
 test('test if the values passed to the manager object constructor are being correctly assign to the properties', () => {
-    expect(manager.name).toBe('Daenerys');
+    expect(manager.name).toBe('Daenerys Targaryen');
     expect(manager.id).toBe('333');
     expect(manager.email).toBe('info@motherofdragons.com');
     expect(manager.officeNumber).toBe('777');
@@ -15,7 +15,7 @@ test('test if the values passed to the manager object constructor are being corr
 
 //--- the remaining tests verify if the methods return the expected values ---//
 test('test if we can get the name from the getName() method', () => {
-    expect(manager.getName()).toBe('Daenerys');
+    expect(manager.getName()).toBe('Daenerys Targaryen');
 });
 
 test('test if we can get the id from the getId() method', () => {
