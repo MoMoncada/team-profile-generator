@@ -33,7 +33,7 @@ main{
     color: black;
 }
 
-/* MAKE IT ALL ON ONE LINE AND SMALLER */
+
 .list-group-item {
     white-space: nowrap;
     overflow: visible;
@@ -42,3 +42,5 @@ main{
 #email {
     color: navy;
 }
+
+

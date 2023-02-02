@@ -10,9 +10,13 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
-//path method // template.html ~ team
-// const OUTPUT_DIR = path.resolve(__dirname, "output"); //resolves the absolute path of the 'output' directory
-// const outputPath = path.join(OUTPUT_DIR, "template.html"); //joins the 'OUTPUT_DIR' and 'template.html' using the 'path.join' method
+//-- Imported script to generate team profile site --//
+const generatePage = require('./src/generate-team-page.js');
+
+
+//path method 
+const OUTPUT_DIR = path.resolve(__dirname, "output"); //resolves the absolute path of the 'output' directory
+const outputPath = path.join(OUTPUT_DIR, "mock-team.html"); //joins the 'OUTPUT_DIR' and 'template.html' using the 'path.join' method
 
 
 //-- array to store team members --//
@@ -21,7 +25,7 @@ const teamMembers = [];
 
 //---- function to start building the team with the team Manager ----//
 const promptManager = () => {
-    return inquirer.prompt([
+    return inquirer.prompt([            
 
         //-- Manager information questions --//
         {
@@ -267,10 +271,13 @@ const buildTeam = () => {
     
     `);
     console.log(teamMembers);
+    //--- Create the output directory if the output path doesn't exist ---//
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR)
+    }
+    fs.writeFileSync(outputPath, generatePage(teamMembers), "utf-8");
+
 }
-
-
-// TODO: add function to output information to a html file
 
 
 
