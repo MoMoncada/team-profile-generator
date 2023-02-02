@@ -9,20 +9,24 @@ The user will be presented with a series of questions, once the user has provide
 
 ## Instructions
 
-[Click here to watch this application in action!](https://drive.google.com/file/d/1IlhpgfXNLZbplajFOCztbHE5UEWj5Ijv/view)
+[Click here to watch this application in action!](https://drive.google.com/file/d/1OBZucIH8ByKLWxmQp0e90iDy84fcfmrY/view)
 
 ---------------------
 
 
+
+
 ## Installation
 
-Clone the repository.
+1. npm init -y
+2. npm i inquirer@8.2.4
+3. npm i jest
 
 ------
 
 ## Application Documentation
 
-### GitHub: https://github.com/MoMoncada/README-gen
+[Github Repo:](https://github.com/MoMoncada/team-profile-generator)
 ---------------------
 
 
